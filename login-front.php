@@ -1,3 +1,11 @@
+<?php 
+   session_start();
+   $_SESSION["UserTypeId"]=-1;
+   $_SESSION["Id"]=-1;
+?>
+
+
+
 <!DOCTYPE html> 
 <html lang="en">
 	
@@ -10,6 +18,11 @@
 		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
 		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
 		<link rel="stylesheet" href="assets/css/style.css">
+		<script
+			src="https://code.jquery.com/jquery-3.4.1.min.js"
+			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			crossorigin="anonymous">
+	    </script>
 	</head>
 	<body class="account-page">
 
@@ -84,33 +97,73 @@
 										<div class="login-header">
 											<h3>Login <span>Gap Book</span></h3>
 										</div>
-										<form action="">
+										<form>
 											<div class="form-group form-focus">
-												<input type="email" class="form-control floating">
+												<input type="email" class="form-control floating email">
 												<label class="focus-label">Email</label>
 											</div>
 											<div class="form-group form-focus">
-												<input type="password" class="form-control floating">
+												<input type="password" class="form-control floating password">
 												<label class="focus-label">Password</label>
+											</div>
+											<div class="form-group form-focus">
+												<select type="account-type" name="account-type" class="form-control floating account-type">
+													<option value="1">Customer</option>
+													<option value="2">Service Provider</option>
+												</select>
+												<label class="focus-label">Choose Account Type</label>
 											</div>
 											<div class="text-right">
 												<a class="forgot-link" href="forgot-password.html">Forgot Password ?</a>
 											</div>
-											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit">Login</button>
-											<div class="login-or">
-												<span class="or-line"></span>
-												<span class="span-or">or</span>
-											</div>
-											<div class="row form-row social-login">
-												<div class="col-6">
-													<a href="#" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f mr-1"></i> Login</a>
-												</div>
-												<div class="col-6">
-													<a href="#" class="btn btn-google btn-block"><i class="fab fa-google mr-1"></i> Login</a>
-												</div>
-											</div>
+											<button class="btn btn-primary btn-block btn-lg login-btn" onclick="checkmate()" type="submit">Login</button>
+										
+							
 											<div class="text-center dont-have">Don’t have an account? <a href="register.html">Register</a></div>
 										</form>
+										<script>
+											function checkmate()
+											{
+												var email=document.querySelector(".email").value;
+												var password=document.querySelector(".password").value;
+												var accountType=document.querySelector(".account-type").value;
+
+												var formData={
+													email:email,
+													passoord:password,
+													accountType:accountType
+												}
+
+												var xhttp = new XMLHttpRequest();
+													xhttp.onreadystatechange = function() {
+														if (this.readyState == 4 && this.status == 200) {
+															console.log(this.responseText);    
+														}
+														else {
+														}
+                                                    };
+													xhttp.open("POST", "http://localhost/se_project/login.php",true);
+													xhttp.send(formData);
+											}
+													<?php
+												/*		if($_SESSION["UserTypeId"]=='1' && $_SESSION["Id"]>0)
+														{
+															header("Location:http://localhost/se_project/patient-dashboard.html");
+														}
+														else if($_SESSION["UserTypeId"]=='2' && $_SESSION["Id"]>0) 
+														{
+															header("Location:http://localhost/se_project/doctor-dashboard.html");
+														}
+														else
+														{
+															//This Gives Error .What so ever is inside header
+															//This Check will Work when login fails
+															//header("Refresh:0");		
+															//header("Location:http://localhost/se_project/login-front.php");							
+														}*/
+										           ?>
+										</script>
+										
 									</div>
 								</div>
 							</div>
@@ -230,7 +283,6 @@
 		<!-- /Main Wrapper -->
 	  
 		<!-- jQuery -->
-		<script src="assets/js/jquery.min.js"></script>
 		
 		<!-- Bootstrap Core JS -->
 		<script src="assets/js/popper.min.js"></script>
