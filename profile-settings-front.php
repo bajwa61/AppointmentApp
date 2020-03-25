@@ -46,7 +46,7 @@
 				  echo " Customer Id : ",$_SESSION["Id"];
 		?>
 		
-			<header class="header">
+		<header class="header">
 				<nav class="navbar navbar-expand-lg header-nav">
 					<div class="navbar-header">
 						<a id="mobile_btn" href="javascript:void(0);">
@@ -57,7 +57,7 @@
 							</span>
 						</a>
 						<a href="index.html" class="navbar-brand logo">
-					     	<span style="font-size:1.6rem;color: #09dca4;">GAP BOOK</span>
+							<span style="font-size:1.6rem;color: #09dca4;">GAP BOOK</span>
 						</a>
 					</div>
 					<div class="main-menu-wrapper">
@@ -93,7 +93,7 @@
 								<a href="login-front.php">Login / Signup</a>
 							</li>
 						</ul>	 
-					</div>	 
+					</div>		 
 					<ul class="nav header-navbar-rht">
 						<li class="nav-item contact-item">
 							<div class="header-contact-img">
@@ -101,7 +101,7 @@
 							</div>
 							<div class="header-contact-detail">
 								<p class="contact-header">Contact</p>
-								<p class="contact-info-header"> +1 315 369 5943</p>
+								<p class="contact-info-header"> +92 310 525 9270</p>
 							</div>
 						</li>
 						
@@ -109,17 +109,16 @@
 						<li class="nav-item dropdown has-arrow logged-item">
 							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 								<span class="user-img">
-									<img class="rounded-circle" src="assets/img/patients/patient.jpg" width="31" alt="Ryan Taylor">
+									<img class="rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" width="31" alt="Darren Elder">
 								</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-right">
 								<div class="user-header">
 									<div class="avatar avatar-sm">
-										<img src="assets/img/patients/patient.jpg" alt="User Image" class="avatar-img rounded-circle">
+										<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image" class="avatar-img rounded-circle">
 									</div>
 									<div class="user-text">
-										<h6>Richard Wilson</h6>
-										<p class="text-muted mb-0">Patient</p>
+										<h6 id="name"></h6>
 									</div>
 								</div>
 								<a class="dropdown-item" href="customer-dashboard.php">Dashboard</a>
@@ -141,7 +140,7 @@
 						<div class="col-md-12 col-12">
 							<nav aria-label="breadcrumb" class="page-breadcrumb">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Profile Settings</li>
 								</ol>
 							</nav>
@@ -166,10 +165,14 @@
 											<img src="assets/img/patients/patient.jpg" alt="User Image">
 										</a>
 										<div class="profile-det-info">
-											<h3>Richard Wilson</h3>
+											<h3 id="name"></h3>
 											<div class="patient-details">
-												<h5><i class="fas fa-birthday-cake"></i> 24 Jul 1983, 38 years</h5>
-												<h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Newyork, USA</h5>
+												<h5>
+													<i class="fas fa-birthday-cake" id="dob">
+														<span id="demo"></span>
+													</i>
+												</h5>
+												<h5 class="mb-0"><i class="fas fa-map-marker-alt" id="location"></i></h5>
 											</div>
 										</div>
 									</div>
@@ -313,17 +316,18 @@
 
 
 											var xhttp = new XMLHttpRequest();
-					                        xhttp.open("POST", "http://localhost/se_project/backend/profile-settings-updateData.php",false);
+					                        xhttp.open("GET", "http://localhost/se_project/backend/profile-settings-updateData.php",true);
 					                        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 					                        xhttp.onreadystatechange = function() {
 						                        	if (this.readyState == 4 && this.status == 200) {
-														 console.log(this.responseText);
-														  if(this.responseText)
+														  console.log(this.responseText);
+														  if(this.responseText==1)
 														  {
-															  console.log("2");
 															  alert("Data Updated Sucessfully");
-															  redirect();
-															  showData();
+														  }
+														  else if(this.responseText==-1)
+														  {
+															  alert("Data Updation Failed");
 														  }
 							                    }
                                             };		
@@ -331,7 +335,7 @@
 										}
 										function redirect()
 										{
-											location.href="http://localhost/se_project/profile-settings-front.php";
+											window.location.replace="http://localhost/se_project/profile-settings-front.php";
 										}
 									</script>
 									
@@ -460,14 +464,60 @@
 									document.getElementsByName('dob')[0].value=myObj.dob;
 									document.getElementsByName('mobileNumber')[0].value=myObj.mobileNumber;
 									document.getElementsByName('country')[0].value=myObj.country;
-									document.getElementsByName('city')[0].value=myObj.country;
+									document.getElementsByName('city')[0].value=myObj.city;
 									document.getElementsByName('postalCode')[0].value=myObj.postalCode;
 							}
                         };		
 					xhttp.send();
 				 }
+				 function showData2()
+					{
+						var xhttp = new XMLHttpRequest();
+					    xhttp.open("GET", "http://localhost/se_project/backend/customer-general-getData.php",false);
+					    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				     	xhttp.onreadystatechange = function() {
+						if (this.readyState == 4 && this.status == 200) {
+									var myObj = JSON.parse(this.responseText);
+									if(myObj.name.length==0)
+									{
+										document.getElementById("name").innerHTML="Customer";
+									}
+									else
+									{
+										document.getElementById("name").innerHTML=myObj.name;
+									}
+									if(myObj.dob=="0000-00-00")
+									{
+										document.getElementById("dob").style.display='none';
+									}
+									else
+									{
+										document.getElementById("dob").innerHTML=myObj.dob;
+									}
+									if(myObj.city.length==0 || myObj.country.length==0)
+									{
+										document.getElementById("location").style.display='none';
+									
+									}
+									else
+									{
+										document.getElementById("location").innerHTML=myObj.city+","+myObj.country;
+									}
+									
+									
+							}
+                        };		
+					xhttp.send();
+					}
                   
 			</script>
+			<script>
+			       
+					$(document).ready(function(){
+						    showData();
+                            showData2();
+					});
+		     </script>
 		   
 		</div>
 		<!-- /Main Wrapper -->

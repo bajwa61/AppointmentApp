@@ -23,6 +23,11 @@
 		
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="assets/css/style.css">
+		<script
+			src="https://code.jquery.com/jquery-3.4.1.min.js"
+			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			crossorigin="anonymous">
+	    </script>
 	
 	
 	</head>
@@ -110,12 +115,12 @@
 										<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image" class="avatar-img rounded-circle">
 									</div>
 									<div class="user-text">
-										<h6>Darren Elder</h6>
+										<h6 id="name"></h6>
 									</div>
 								</div>
 								<a class="dropdown-item" href="customer-dashboard.php">Dashboard</a>
 								<a class="dropdown-item" href="profile-settings-front.php">Profile Settings</a>
-								<a class="dropdown-item" href="login.html">Logout</a>
+								<a class="dropdown-item" href="index.html">Logout</a>
 							</div>
 						</li>
 						<!-- /User Menu -->
@@ -158,10 +163,16 @@
 											<img src="assets/img/patients/patient.jpg" alt="User Image">
 										</a>
 										<div class="profile-det-info">
-											<h3>Richard Wilson</h3>
+											<h3 id="name"></h3>
 											<div class="patient-details">
-												<h5><i class="fas fa-birthday-cake"></i> 24 Jul 1983, 38 years</h5>
-												<h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Newyork, USA</h5>
+												<h5>
+													<i class="fas fa-birthday-cake" id="dob">
+													</i>
+										    	</h5>
+												<h5 class="mb-0">
+													<i class="fas fa-map-marker-alt" id="location">
+													</i> 
+												</h5>
 											</div>
 										</div>
 									</div>
@@ -1272,6 +1283,50 @@
 			<!-- /Footer -->
 		   
 		</div>
+		<script>
+			        function showData()
+					{
+						var xhttp = new XMLHttpRequest();
+					    xhttp.open("GET", "http://localhost/se_project/backend/customer-general-getData.php",false);
+					    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				     	xhttp.onreadystatechange = function() {
+						if (this.readyState == 4 && this.status == 200) {
+									var myObj = JSON.parse(this.responseText);
+									if(myObj.name.length==0)
+									{
+										document.getElementById("name").innerHTML="Customer";
+									}
+									else
+									{
+										document.getElementById("name").innerHTML=myObj.name;
+									}
+									if(myObj.dob=="0000-00-00")
+									{
+										document.getElementById("dob").style.display='none';
+									}
+									else
+									{
+										document.getElementById("dob").innerHTML=myObj.dob;
+									}
+									if(myObj.city.length==0 || myObj.country.length==0)
+									{
+										document.getElementById("location").style.display='none';
+									
+									}
+									else
+									{
+										document.getElementById("location").innerHTML=myObj.city+","+myObj.country;
+									}
+									
+									
+							}
+                        };		
+					xhttp.send();
+					}
+					$(document).ready(function(){
+                            showData();
+					});
+		</script>
 		<!-- /Main Wrapper -->
 	  
 		<!-- jQuery -->

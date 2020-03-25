@@ -20,6 +20,7 @@ if ($conn->connect_error) {
 $Id=$_SESSION["Id"];//User Id
 
 
+
 $name=$_POST['name'];
 
 $rawdate = htmlentities($_POST['dob']);
@@ -39,11 +40,11 @@ $sql = "UPDATE users SET name='$name',dob='$dob',gender='$gender',mobileNumber='
 $result = $conn->query($sql);
 
 if ($result === TRUE) {
-    echo true;
+    echo '1';
 } 
 else
 {
-    echo false;
+    echo '-1';
 }
 
 

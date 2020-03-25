@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 $email=$_POST['email'];
 $password=$_POST['password'];
 $accountType=$_POST['accountType'];
-$UserId;
+$UserId=0;
 
 //write your queries here
 
@@ -35,16 +35,10 @@ if ($result->num_rows > 0) {
 }
 else
 {
-  $myObj2 = new \stdClass();
-  $myObj2->UserTypeId=-2;
-  $myObj2->Id=-2;
-
-  $myJSON = json_encode($myObj2);
-
-  echo $myJSON;
+  echo '-1';
 }
 
-if($accountType=='1')
+if($accountType=='1' && $UserId!=0) 
 {
   $sql2="Select CustomerId from customers where UserId='$UserId' ";
   $result2=$conn->query($sql2);
@@ -65,7 +59,7 @@ if($accountType=='1')
     echo $myJSON;
   }
 }
-else
+else if($accountType=='2' &&  $UserId!=0)
 {
   $sql2="Select ServiceProviderId from serviceproviders where UserId='$UserId' ";
   $result2=$conn->query($sql2);

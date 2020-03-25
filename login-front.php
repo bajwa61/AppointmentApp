@@ -118,6 +118,14 @@
 							
 											<div class="text-center dont-have">Don’t have an account? <a href="register.html">Register</a></div>
 										</form>
+										<?php
+											// remove all session variables
+											session_unset();
+
+											// destroy the session
+											session_destroy();
+                                        ?>
+
 										<script>
 											function checkmate()
 											{
@@ -133,24 +141,26 @@
 												xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 												xhttp.onreadystatechange = function() {
 														if (this.readyState == 4 && this.status == 200) {
-															var myObj = JSON.parse(this.responseText);
-															//UserTypeId and Id
-															if(myObj.UserTypeId==1 && myObj.Id>0 )
-															{
-																redirect("http://localhost/se_project/customer-dashboard.php");
-																console.log("Customer");
-															}
-															if(myObj.UserTypeId==2 && myObj.Id>0 )
-															{
-																redirect("http://localhost/se_project/doctor-dashboard.html");
-																console.log("Service Provider");
-															}
-															else if(myObj.UserTypeId==-2 && myObj.Id==-2 )
+															if(this.responseText==-1)
 															{
 																alert("Login Failed");
 															}
-														}
-                                                    };		
+															else if(this.responseText!=-1)
+															{
+															    var myObj = JSON.parse(this.responseText);
+															    //UserTypeId and Id
+															    if(myObj.UserTypeId==1 && myObj.Id>0 )
+															    {
+															    	redirect("http://localhost/se_project/customer-dashboard.php");
+																    console.log("Customer");
+															     }
+															     if(myObj.UserTypeId==2 && myObj.Id>0 )
+															    {
+																   redirect("http://localhost/se_project/doctor-dashboard.html");
+																   console.log("Service Provider");
+															    }
+														 }
+                                                    }};		
 													xhttp.send(formData);
 											}
 											function redirect(url)
