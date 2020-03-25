@@ -18,7 +18,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-
 $email=$_POST['email'];
 $password=$_POST['password'];
 $accountType=$_POST['accountType'];
@@ -30,11 +29,19 @@ $sql = "Select UserId from  users where email='$email' and password='$password' 
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   $row=$result->fetch_assoc();
+
   $UserId=$row["UserId"];
+
 }
 else
 {
-   $UserId=-1;
+  $myObj2 = new \stdClass();
+  $myObj2->UserTypeId=-2;
+  $myObj2->Id=-2;
+
+  $myJSON = json_encode($myObj2);
+
+  echo $myJSON;
 }
 
 if($accountType=='1')
@@ -44,12 +51,18 @@ if($accountType=='1')
   if($result2->num_rows>0)
   {
     $row2=$result2->fetch_assoc();
+
+
     $_SESSION["Id"]=$row2["CustomerId"];
-    $_SESSION["UserAccountType"]=$accountType;
-    echo 'True';
-  }
-  else{
-    echo 'False';
+    $_SESSION["UserTypeId"]=$accountType;
+
+    $myObj = new \stdClass();
+    $myObj->UserTypeId=$accountType;
+    $myObj->Id=$row2["CustomerId"];
+
+    $myJSON = json_encode($myObj);
+
+    echo $myJSON;
   }
 }
 else
@@ -59,16 +72,19 @@ else
   if($result2->num_rows>0)
   {
     $row2=$result2->fetch_assoc();
+
     $_SESSION["Id"]=$row2["ServiceProviderId"];
-    $_SESSION["UserAccountType"]=$accountType;
-    echo 'True';
-  }
-  else
-  {
-    echo 'False';
+    $_SESSION["UserTypeId"]=$accountType;
+
+    $obj = new \stdClass();
+    $obj->UserTypeId=$accountType;
+    $obj->Id=$row2["ServiceProviderId"];
+
+    $myJSON = json_encode($obj);
+
+    echo $myJSON;
   }
 }
-
 
 $conn->close();
 

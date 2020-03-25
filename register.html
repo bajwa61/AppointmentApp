@@ -50,7 +50,7 @@
 								<a href="index.html">Home</a>
 							</li>
 							<li class="login-link">
-								<a href="login.html">Login / Signup</a>
+								<a href="login-front.php">Login / Signup</a>
 							</li>
 						</ul>
 					</div>		 
@@ -65,7 +65,7 @@
 							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link header-login" href="login.html">login / Signup </a>
+							<a class="nav-link header-login" href="login-front.php">login / Signup </a>
 						</li>
 					</ul>
 				</nav>
@@ -93,19 +93,19 @@
 										<!-- Register Form -->
 										<form method="POST" id="form">
 											<div class="form-group form-focus">
-												<input type="text" class="form-control floating name1" name="name1">
+												<input type="text" class="form-control floating name1" name="name1" required>
 												<label class="focus-label">Name</label>
 											</div>
 											<div class="form-group form-focus">
-												<input type="text" class="form-control floating email" name="email">
+												<input type="text" class="form-control floating email" name="email" required>
 												<label class="focus-label">Email</label>
 											</div>
 											<div class="form-group form-focus">
-												<input type="password" class="form-control floating password" name="password">
+												<input type="password" class="form-control floating password" name="password" required>
 												<label class="focus-label">Create Password</label>
 											</div>
 											<div class="form-group form-focus">
-												<select class="form-control floating account-type" name="account-type">
+												<select class="form-control floating account-type" name="account-type" required>
 													<option value="1">Customer</option>
 													<option value="2">Service Provider</option>
 												</select>
@@ -119,31 +119,46 @@
 										<!-- /Register Form -->
 										<script>
 											function loadDoc() {
-													var name1=document.querySelector(".name1").value;
+													var name=document.querySelector(".name1").value;
 													var email= document.querySelector(".email").value;
 													var password = document.querySelector(".password").value;
 													var accountType= document.querySelector(".account-type").value;
-													var formData= {
-														name1: name1,
-														email: email,
-														password : password,
-														accountType : accountType 
+													if(name.length>0 && email.length>0 && password.length>0)
+													{
+														var formData="name="+name+"&email="+email+"&password="+password+"&accountType="+accountType;
+														var xhttp = new XMLHttpRequest();
+														xhttp.open("POST", "http://localhost/se_project/register.php",false);
+														xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
+														xhttp.onreadystatechange = function() {
+															if (this.readyState == 4 && this.status == 200) {
+																console.log(this.responseText);
+																if(this.responseText=="1")
+																{
+																	alert("Registered Sucessfully");
+																    redirect("http://localhost/se_project/login-front.php");
+																}
+																else if(this.responseText=="-1")
+																{
+																	alert("Registration Failed");
+																}
+																
+															}
+															else {
+																
+															}
+														};
+														xhttp.send(formData);
 													}
-													var xhttp = new XMLHttpRequest();
-													xhttp.onreadystatechange = function() {
-														if (this.readyState == 4 && this.status == 200) {
-															console.log(this.responseText);
-														}
-														else {
-															
-														}
-                                                    };
-   													xhttp.open("POST", "http://localhost/se_project/register.php",false);
-													xhttp.send(formData);
-
-												};
-											
+													else
+													{
+														alert("Inputs Should have length Greater Then 0");
+													}
+										}
+										function redirect(url)
+										{
+                                               window.location.href=url;
+										}
 										</script>
 										
 									</div>

@@ -1,7 +1,10 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html> 
 <html lang="en">
-	
-<!-- doccure/change-password.html  30 Nov 2019 04:12:18 GMT -->
+
 <head>
 		<meta charset="utf-8">
 		<title>Gap Box</title>
@@ -17,15 +20,31 @@
 		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
 		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
 		
+		<!-- Datetimepicker CSS -->
+		<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
+		
+		<!-- Select2 CSS -->
+		<link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
+		
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="assets/css/style.css">
+		<script
+			src="https://code.jquery.com/jquery-3.4.1.min.js"
+			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			crossorigin="anonymous">
+	    </script>
 		
-	
 	</head>
 	<body>
 
 		<!-- Main Wrapper -->
 		<div class="main-wrapper">
+
+
+		<?php
+				  echo "User Type Id : ",$_SESSION["UserTypeId"];
+				  echo " Customer Id : ",$_SESSION["Id"];
+		?>
 		
 			<header class="header">
 				<nav class="navbar navbar-expand-lg header-nav">
@@ -122,11 +141,11 @@
 						<div class="col-md-12 col-12">
 							<nav aria-label="breadcrumb" class="page-breadcrumb">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Change Password</li>
+									<li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Profile Settings</li>
 								</ol>
 							</nav>
-							<h2 class="breadcrumb-title">Change Password</h2>
+							<h2 class="breadcrumb-title">Profile Settings</h2>
 						</div>
 					</div>
 				</div>
@@ -137,9 +156,9 @@
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
+					
+						<!-- Profile Sidebar -->
 						<div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
-						
-							<!-- Profile Sidebar -->
 							<div class="profile-sidebar">
 								<div class="widget-profile pro-widget-content">
 									<div class="profile-info-widget">
@@ -164,13 +183,13 @@
 													<span>Dashboard</span>
 												</a>
 											</li>
-											<li>
+											<li class="active">
 												<a href="profile-settings-front.php">
 													<i class="fas fa-user-cog"></i>
 													<span>Profile Settings</span>
 												</a>
 											</li>
-											<li class="active">
+											<li>
 												<a href="change-password.html">
 													<i class="fas fa-lock"></i>
 													<span>Change Password</span>
@@ -187,80 +206,135 @@
 								</div>
 
 							</div>
-							<!-- /Profile Sidebar -->
-							
 						</div>
+						<!-- /Profile Sidebar -->
 						
 						<div class="col-md-7 col-lg-8 col-xl-9">
 							<div class="card">
 								<div class="card-body">
-									<div class="row">
-										<div class="col-md-12 col-lg-6">
-										
-											<!-- Change Password Form -->
-											<form>
+									
+									<!-- Profile Settings Form -->
+									<form method="POST" enctype="multipart/form-data">
+										<div class="row form-row">
+											<div class="col-12 col-md-12">
 												<div class="form-group">
-													<label>New Password</label>
-													<input type="password" class="form-control" name="newPassword">
+													<div class="change-avatar">
+														<div class="profile-img">
+															<img src="assets/img/patients/patient.jpg" alt="User Image">
+														</div>
+														<div class="upload-img">
+															<div class="change-photo-btn">
+																<span><i class="fa fa-upload"></i> Upload Photo</span>
+																<input type="file" class="upload" name="file">
+															</div>
+															<small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
+														</div>
+													</div>
 												</div>
+											</div>
+											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label>Confirm Password</label>
-													<input type="password" class="form-control" name="confirmPassword" onchange="checkequal()">
+													<label>Name</label>
+													<input type="text" class="form-control" name="name">
 												</div>
+											</div>
+											<div class="col-12 col-md-6">
 												<div class="form-group">
-													<label class="demo" style="color:red;"></label>
+													<label>Date of Birth</label>
+													<div class="cal-icon">
+														<input type="text" class="form-control datetimepicker"  name="dob">
+													</div>
 												</div>
-												<div class="submit-section">
-													<button type="submit" onclick="passwordUpdater()" class="btn btn-primary submit-btn">Save Changes</button>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label>Gender</label>
+													<select name="gender" class="form-control" type="text">
+														<option>Male</option>
+														<option>Female</option>
+														<option>Other</option>
+													</select>
 												</div>
-											</form>
-											<!-- /Change Password Form -->
-											<script>
-												function checkequal()
-												{
-													var newPassword=document.getElementsByName("newPassword")[0].value;
-													var confirmPassword=document.getElementsByName("confirmPassword")[0].value;
-													if(newPassword!=confirmPassword)
-													{
-                                                      document.querySelector(".demo").innerHTML="Password Match Failed";
-													  document.querySelector(".submit-btn").disabled=true;     
-													}
-													else 
-													{
-														document.querySelector(".demo").innerHTML="";
-													    document.querySelector(".submit-btn").disabled=false;     
-													}
-												}
-												function passwordUpdater()
-												{
-													var password=document.getElementsByName("confirmPassword")[0].value;
-													formData="password="+password;
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label>Email ID</label>
+													<input type="email" class="form-control" name="email" disabled>
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label>Mobile</label>
+													<input type="text"  class="form-control" name="mobileNumber">
+												</div>
+											</div>
+											<div class="col-12">
+												<div class="form-group">
+												<label>Country</label>
+													<input type="text" class="form-control"  name="country">
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label>City</label>
+													<input type="text" class="form-control" name="city">
+												</div>
+											</div>
+											<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label>Postal Code</label>
+													<input type="text" class="form-control" name="postalCode">
+												</div>
+											</div>
+										</div>
+										<div class="submit-section">
+											<button type="submit" onclick="dataSaver()" class="btn btn-primary submit-btn">Save Changes</button>
+										</div>
+									</form>
+									<!-- /Profile Settings Form -->
 
-													var xhttp = new XMLHttpRequest();
-					                                xhttp.open("POST", "http://localhost/se_project/backend/change-password.php",false);
-					                                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					                                xhttp.onreadystatechange = function() {
+									<script>
+									$(document).ready(function(){
+                                         showData();
+									});
+										function dataSaver()
+										{
+											var name=document.getElementsByName("name")[0].value;
+											var dob=document.getElementsByName("dob")[0].value;
+											var gender=document.getElementsByName("gender")[0].value;
+											var mobileNumber=document.getElementsByName("mobileNumber")[0].value;
+											var country=document.getElementsByName("country")[0].value;
+											var city=document.getElementsByName("city")[0].value;
+											var postalCode=document.getElementsByName("postalCode")[0].value;
+
+											var formData="name="+name+"&dob="+dob+"&gender="+gender+
+											    "&mobileNumber="+mobileNumber+"&country="+country+"&city="+city+"&postalCode="+
+												postalCode;
+
+
+											var xhttp = new XMLHttpRequest();
+					                        xhttp.open("POST", "http://localhost/se_project/backend/profile-settings-updateData.php",false);
+					                        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					                        xhttp.onreadystatechange = function() {
 						                        	if (this.readyState == 4 && this.status == 200) {
-														  console.log(this.responseText);
+														 console.log(this.responseText);
 														  if(this.responseText)
 														  {
 															  console.log("2");
-															  alert("Password Updated Sucessfully");
+															  alert("Data Updated Sucessfully");
 															  redirect();
 															  showData();
 														  }
-							                           }
-                                                    };		
-					                                xhttp.send(formData);
-												}
-												function redirect()
-												{
-													location.href="http://localhost/se_project/backend/change-password.html";
-												}
-											</script>
-											
-										</div>
-									</div>
+							                    }
+                                            };		
+					                        xhttp.send(formData);
+										}
+										function redirect()
+										{
+											location.href="http://localhost/se_project/profile-settings-front.php";
+										}
+									</script>
+									
 								</div>
 							</div>
 						</div>
@@ -371,6 +445,29 @@
 				
 			</footer>
 			<!-- /Footer -->
+			<script>
+                 function showData()
+				 {
+					var xhttp = new XMLHttpRequest();
+					xhttp.open("GET", "http://localhost/se_project/backend/profile-settings-getData.php",false);
+					xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					xhttp.onreadystatechange = function() {
+							if (this.readyState == 4 && this.status == 200) {
+									var myObj = JSON.parse(this.responseText);
+									document.getElementsByName('email')[0].value=myObj.email;
+									document.getElementsByName('name')[0].value=myObj.name;
+									document.getElementsByName('gender')[0].value=myObj.gender;
+									document.getElementsByName('dob')[0].value=myObj.dob;
+									document.getElementsByName('mobileNumber')[0].value=myObj.mobileNumber;
+									document.getElementsByName('country')[0].value=myObj.country;
+									document.getElementsByName('city')[0].value=myObj.country;
+									document.getElementsByName('postalCode')[0].value=myObj.postalCode;
+							}
+                        };		
+					xhttp.send();
+				 }
+                  
+			</script>
 		   
 		</div>
 		<!-- /Main Wrapper -->
@@ -382,6 +479,13 @@
 		<script src="assets/js/popper.min.js"></script>
 		<script src="assets/js/bootstrap.min.js"></script>
 		
+		<!-- Select2 JS -->
+		<script src="assets/plugins/select2/js/select2.min.js"></script>
+		
+		<!-- Datetimepicker JS -->
+		<script src="assets/js/moment.min.js"></script>
+		<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+		
 		<!-- Sticky Sidebar JS -->
         <script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
         <script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
@@ -391,5 +495,4 @@
 		
 	</body>
 
-<!-- doccure/change-password.html  30 Nov 2019 04:12:18 GMT -->
 </html>

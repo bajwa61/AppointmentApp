@@ -57,9 +57,6 @@
 							<li>
 								<a href="index.html">Home</a>
 							</li>
-							<li class="login-link">
-								<a href="login.html">Login / Signup</a>
-							</li>
 						</ul>
 					</div>		 
 					<ul class="nav header-navbar-rht">
@@ -73,7 +70,7 @@
 							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link header-login" href="login.html">login / Signup </a>
+							<a class="nav-link header-login" href="login-front.php">login / Signup </a>
 						</li>
 					</ul>
 				</nav>
@@ -97,13 +94,13 @@
 										<div class="login-header">
 											<h3>Login <span>Gap Book</span></h3>
 										</div>
-										<form>
+										<form method="post">
 											<div class="form-group form-focus">
-												<input type="email" class="form-control floating email">
+												<input type="email" class="form-control floating email" name="email">
 												<label class="focus-label">Email</label>
 											</div>
 											<div class="form-group form-focus">
-												<input type="password" class="form-control floating password">
+												<input type="password" class="form-control floating password" name="password">
 												<label class="focus-label">Password</label>
 											</div>
 											<div class="form-group form-focus">
@@ -128,41 +125,41 @@
 												var password=document.querySelector(".password").value;
 												var accountType=document.querySelector(".account-type").value;
 
-												var formData={
-													email:email,
-													passoord:password,
-													accountType:accountType
-												}
+											    var formData="email="+email+"&password="+password+"&accountType="+accountType;
 
+												
 												var xhttp = new XMLHttpRequest();
-													xhttp.onreadystatechange = function() {
+												xhttp.open("POST", "http://localhost/se_project/login.php",true);
+												xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+												xhttp.onreadystatechange = function() {
 														if (this.readyState == 4 && this.status == 200) {
-															console.log(this.responseText);    
+															var myObj = JSON.parse(this.responseText);
+															//UserTypeId and Id
+															if(myObj.UserTypeId==1 && myObj.Id>0 )
+															{
+																redirect("http://localhost/se_project/customer-dashboard.php");
+																console.log("Customer");
+															}
+															if(myObj.UserTypeId==2 && myObj.Id>0 )
+															{
+																redirect("http://localhost/se_project/doctor-dashboard.html");
+																console.log("Service Provider");
+															}
+															else if(myObj.UserTypeId==-2 && myObj.Id==-2 )
+															{
+																alert("Login Failed");
+															}
 														}
-														else {
-														}
-                                                    };
-													xhttp.open("POST", "http://localhost/se_project/login.php",true);
+                                                    };		
 													xhttp.send(formData);
 											}
-													<?php
-												/*		if($_SESSION["UserTypeId"]=='1' && $_SESSION["Id"]>0)
-														{
-															header("Location:http://localhost/se_project/patient-dashboard.html");
-														}
-														else if($_SESSION["UserTypeId"]=='2' && $_SESSION["Id"]>0) 
-														{
-															header("Location:http://localhost/se_project/doctor-dashboard.html");
-														}
-														else
-														{
-															//This Gives Error .What so ever is inside header
-															//This Check will Work when login fails
-															//header("Refresh:0");		
-															//header("Location:http://localhost/se_project/login-front.php");							
-														}*/
-										           ?>
+											function redirect(url)
+											{
+                                               window.location.href=url;
+											}
 										</script>
+										
+										
 										
 									</div>
 								</div>
