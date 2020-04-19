@@ -1,13 +1,14 @@
 <?php
-  session_start();
+   session_start();
 ?>
+
 
 <!DOCTYPE html> 
 <html lang="en">
-
+	
 <head>
 		<meta charset="utf-8">
-		<title>Gap Box</title>
+		<title>Gap Book</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
 		
 		<!-- Favicons -->
@@ -20,12 +21,6 @@
 		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
 		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
 		
-		<!-- Datetimepicker CSS -->
-		<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
-		
-		<!-- Select2 CSS -->
-		<link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
-		
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="assets/css/style.css">
 		<script
@@ -33,179 +28,192 @@
 			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 			crossorigin="anonymous">
 	    </script>
-		
+	
+	
 	</head>
 	<body>
 
 		<!-- Main Wrapper -->
 		<div class="main-wrapper">
 		
-		<!-- Header -->
-		<header class="header">
-			<nav class="navbar navbar-expand-lg header-nav">
-				<div class="navbar-header">
-					<a id="mobile_btn" href="javascript:void(0);">
-						<span class="bar-icon">
-							<span></span>
-							<span></span>
-							<span></span>
-						</span>
-					</a>
-					<a href="index.html" class="navbar-brand logo">
-						<span style="font-size:1.6rem;color: #09dca4;">GAP BOOK</span>
-					</a>
-				</div>
-				<div class="main-menu-wrapper">
-					<div class="menu-header">
-						<a href="index.html" class="menu-logo">
-							<span style="font-size:1.6rem;color: #09dca4;">GAP BOOK</span>
-						</a>
-						<a id="menu_close" class="menu-close" href="javascript:void(0);">
-							<i class="fas fa-times"></i>
-						</a>
-					</div>
-					<ul class="main-nav">
-						<li>
-							<a href="index.html">Home</a>
-						</li>
-						<li class="has-submenu active">
-							<a href="search.html">Search for a Service</a>
-							<li class="has-submenu active">
-								<a href="#">Customers<i class="fas fa-chevron-down"></i></a>
-								<ul class="submenu">
-									<li><a href="booking.html">Booking</a></li>
-									<li><a href="checkout.html">Checkout</a></li>
-									<li><a href="booking-success.html">Booking Success</a></li>
-									<li><a href="http://localhost/AppointmentApp/customer-dashboard.php">My Dashboard</a></li>
-									<li>
-										<a href="http://localhost/AppointmentApp/profile-settings-front.php">Profile Settings</a>
-									</li>
-									<li><a href="http://localhost/AppointmentApp/change-password.html">Change Password</a></li>
-								</ul>
-							</li>	
-						</li>	
-					</ul>	 
-				</div>		 
-				<ul class="nav header-navbar-rht">
-					<li class="nav-item contact-item">
-						<div class="header-contact-img">
-							<i class="far fa-hospital"></i>							
-						</div>
-						<div class="header-contact-detail">
-							<p class="contact-header">Contact</p>
-							<p class="contact-info-header"> +92 310 525 9270</p>
-						</div>
-					</li>
-					
-					<!-- User Menu -->
-					<li class="nav-item dropdown has-arrow logged-item">
-						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-							<span class="user-img">
-								<img class="rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" width="31" alt="Darren Elder">
+			<!-- Header -->
+			<header class="header">
+				<nav class="navbar navbar-expand-lg header-nav">
+					<div class="navbar-header">
+						<a id="mobile_btn" href="javascript:void(0);">
+							<span class="bar-icon">
+								<span></span>
+								<span></span>
+								<span></span>
 							</span>
 						</a>
-						<div class="dropdown-menu dropdown-menu-right">
-							<div class="user-header">
-								<div class="avatar avatar-sm">
-									<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image" class="avatar-img rounded-circle">
-								</div>
-								<div class="user-text">
-									<h6 id="name"></h6>
-								</div>
-							</div>
-							<a class="dropdown-item" href="http://localhost/AppointmentApp/customer-dashboard.php">Dashboard</a>
-							<a class="dropdown-item" href="http://localhost/AppointmentApp/profile-settings-front.php">Profile Settings</a>
-							<a class="dropdown-item" href="http://localhost/AppointmentApp/logout.php">Logout</a>
+						<a href="http://localhost/AppointmentApp/index.php" class="navbar-brand logo">
+							<span style="font-size:1.6rem;color: #09dca4;">GAP BOOK</span>
+						</a>
+					</div>
+					<div class="main-menu-wrapper">
+						<div class="menu-header">
+							<a href="http://localhost/AppointmentApp/index.php" class="menu-logo">
+								<span style="font-size:1.6rem;color: #09dca4;">GAP BOOK</span>
+							</a>
+							<a id="menu_close" class="menu-close" href="javascript:void(0);">
+								<i class="fas fa-times"></i>
+							</a>
 						</div>
-					</li>
-					<!-- /User Menu -->
-					
-				</ul>
-			</nav>
-		</header>
-		<!-- /Header -->
-		
-		<!-- Breadcrumb -->
-		<div class="breadcrumb-bar">
-			<div class="container-fluid">
-				<div class="row align-items-center">
-					<div class="col-md-12 col-12">
-						<nav aria-label="breadcrumb" class="page-breadcrumb">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="http://localhost/AppointmentApp/index.html">Home</a></li>
-								<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-							</ol>
-						</nav>
-						<h2 class="breadcrumb-title">Dashboard</h2>
+						<ul class="main-nav">
+							<li>
+								<a href="http://localhost/AppointmentApp/index.php">Home</a>
+							</li>
+							<li class="has-submenu active">
+								<li class="has-submenu active">
+									<a href="#">Service Provider<i class="fas fa-chevron-down"></i></a>
+									<ul class="submenu">
+										<li><a href="#">Booking</a></li>
+										<li><a href="#">Checkout</a></li>
+										<li><a href="#">Booking Success</a></li>
+										<li><a href="http://localhost/AppointmentApp/service-dashboard.php">My Dashboard</a></li>
+										<li>
+											<a href="http://localhost/AppointmentApp/profile-settings-front-2.php">Profile Settings</a>
+										</li>
+										<li><a href="http://localhost/AppointmentApp/change-password-2.html">Change Password</a></li>
+									</ul>
+								</li>	
+							</li>	
+						</ul>	 
+					</div>		 
+					<ul class="nav header-navbar-rht">
+						<li class="nav-item contact-item">
+							<div class="header-contact-img">
+								<i class="far fa-hospital"></i>							
+							</div>
+							<div class="header-contact-detail">
+								<p class="contact-header">Contact</p>
+								<p class="contact-info-header"> +92 310 525 9270</p>
+							</div>
+						</li>
+						
+						<!-- User Menu -->
+						<li class="nav-item dropdown has-arrow logged-item">
+							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+								<span class="user-img">
+									<img class="rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" width="31" alt="Darren Elder">
+								</span>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right">
+								<div class="user-header">
+									<div class="avatar avatar-sm">
+										<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image" class="avatar-img rounded-circle">
+									</div>
+									<div class="user-text">
+										<h6 id="name"></h6>
+									</div>
+								</div>
+								<a class="dropdown-item" href="http://localhost/AppointmentApp/service-dashboard.php">Dashboard</a>
+								<a class="dropdown-item" href="http://localhost/AppointmentApp/profile-settings-front-2.php">Profile Settings</a>
+								<a class="dropdown-item" href="http://localhost/AppointmentApp/logout.php">Logout</a>
+							</div>
+						</li>
+						<!-- /User Menu -->
+						
+					</ul>
+				</nav>
+			</header>
+			<!-- /Header -->
+			
+			<!-- Breadcrumb -->
+			<div class="breadcrumb-bar">
+				<div class="container-fluid">
+					<div class="row align-items-center">
+						<div class="col-md-12 col-12">
+							<nav aria-label="breadcrumb" class="page-breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="http://localhost/AppointmentApp/index.php">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+								</ol>
+							</nav>
+							<h2 class="breadcrumb-title">Dashboard</h2>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- /Breadcrumb -->
-		
-		<!-- Page Content -->
-		<div class="content">
-			<div class="container-fluid">
+			<!-- /Breadcrumb -->
+			
+			
+			<!-- Page Content -->
+			<div class="content">
+				<div class="container-fluid">
 
-				<div class="row">
-					
-					<!-- Profile Sidebar -->
-					<div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
-						<div class="profile-sidebar">
-							<div class="widget-profile pro-widget-content">
-								<div class="profile-info-widget">
-									<a href="#" class="booking-doc-img">
-										<img src="assets/img/patients/patient.jpg" alt="User Image">
-									</a>
-									<div class="profile-det-info" style="position:relative;right:4vh;">
-										<h3 id="name"></h3>
-										<div class="patient-details">
-											<h5>
-												<i class="fas fa-birthday-cake" id="dob">
-												</i>
-											</h5>
-											<h5 class="mb-0">
-												<i class="fas fa-map-marker-alt" id="location">
-												</i> 
-											</h5>
+					<div class="row">
+						<div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+							
+							<!-- Profile Sidebar -->
+							<div class="profile-sidebar">
+								<div class="widget-profile pro-widget-content">
+									<div class="profile-info-widget">
+										<a href="#" class="booking-doc-img">
+											<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
+										</a>
+										<div class="profile-det-info">
+											<h3></h3>
+											
+											<div class="patient-details">
+												<h5 class="mb-0"></h5>
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-							<div class="dashboard-widget">
-								<nav class="dashboard-menu">
-									<ul>
-										<li class="active">
-											<a href="http://localhost/AppointmentApp/customer-dashboard.php">
-												<i class="fas fa-columns"></i>
-												<span>Dashboard</span>
-											</a>
-										</li>
-										<li>
-											<a href="http://localhost/AppointmentApp/profile-settings-front.php">
-												<i class="fas fa-user-cog"></i>
-												<span>Profile Settings</span>
-											</a>
-										</li>
-										<li>
-											<a href="http://localhost/AppointmentApp/change-password.html">
-												<i class="fas fa-lock"></i>
-												<span>Change Password</span>
-											</a>
-										</li>
-										<li>
-											<a href="http://localhost/AppointmentApp/logout.php">
-												<i class="fas fa-sign-out-alt"></i>
-												<span>Logout</span>
-											</a>
-										</li>
-									</ul>
-								</nav>
-							</div>
-
+								<div class="dashboard-widget">
+									<nav class="dashboard-menu">
+										<ul>
+											<li class="active">
+												<a href="http://localhost/AppointmentApp/service-dashboard.php">
+													<i class="fas fa-columns"></i>
+													<span>Dashboard</span>
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													<i class="fas fa-calendar-check"></i>
+													<span>Appointments</span>
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													<i class="fas fa-hourglass-start"></i>
+													<span>Schedule Timings</span>
+												</a>
+											</li>
+											<li>
+												<a href="invoices.html">
+													<i class="fas fa-file-invoice"></i>
+													<span>Invoices</span>
+												</a>
+											</li>
+											<li>
+											<li>
+												<a href="http://localhost/AppointmentApp/profile-settings-front-2.php">
+													<i class="fas fa-user-cog"></i>
+													<span>Profile Settings</span>
+												</a>
+											</li>
+											<li>
+												<a href="http://localhost/AppointmentApp/change-password-2.html">
+													<i class="fas fa-lock"></i>
+													<span>Change Password</span>
+												</a>
+											</li>
+											<li>
+												<a href="http://localhost/AppointmentApp/logout.php">
+													<i class="fas fa-sign-out-alt"></i>
+													<span>Logout</span>
+												</a>
+											</li>
+										</ul>
+									</nav>
+								</div>
+                            </div>
 						</div>
-					</div>
-						<!-- /Profile Sidebar -->
+							<!-- /Profile Sidebar -->
 						
 						<div class="col-md-7 col-lg-8 col-xl-9">
 							<div class="card">
@@ -218,7 +226,7 @@
 												<div class="form-group">
 													<div class="change-avatar">
 														<div class="profile-img">
-															<img src="assets/img/patients/patient.jpg" alt="User Image">
+															<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
 														</div>
 														<div class="upload-img">
 															<div class="change-photo-btn">
@@ -235,7 +243,20 @@
 													<label>Name</label>
 													<input type="text" class="form-control" name="name">
 												</div>
-											</div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+												<div class="form-group">
+                                                    <label>Category</label>
+                                                    <select type="text"  class="form-control" name="category">
+                                                        <option class="myText"></option>
+                                                        <option value="1" name="medical">Medical</option>
+                                                        <option value="2" name="computer">Computer Science</option>
+                                                        <option value="3" name="marketing">Marketing</option>
+                                                        <option value="4" name="mana">Management</option>
+                                                        <option value="5" name="lawyer">Lawyer</option>
+                                                    </select>
+												</div>
+                                            </div>
 											<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label>Date of Birth</label>
@@ -264,6 +285,12 @@
 												<div class="form-group">
 													<label>Mobile</label>
 													<input type="text"  class="form-control" name="mobileNumber">
+												</div>
+                                            </div>
+                                            <div class="col-12">
+												<div class="form-group">
+                                                    <label>Description</label>
+                                                     <textarea rows="10" name="aboutMe" class="form-control" type="text"></textarea>
 												</div>
 											</div>
 											<div class="col-12">
@@ -295,6 +322,8 @@
 										function dataSaver()
 										{
 											var name=document.getElementsByName("name")[0].value;
+                                            var category=document.getElementsByName("category")[0].value;
+                                            var aboutMe=document.getElementsByName("aboutMe")[0].value;
 											var dob=document.getElementsByName("dob")[0].value;
 											var gender=document.getElementsByName("gender")[0].value;
 											var mobileNumber=document.getElementsByName("mobileNumber")[0].value;
@@ -302,9 +331,12 @@
 											var city=document.getElementsByName("city")[0].value;
 											var postalCode=document.getElementsByName("postalCode")[0].value;
 
-											var formData="name="+name+"&dob="+dob+"&gender="+gender+
-											    "&mobileNumber="+mobileNumber+"&country="+country+"&city="+city+"&postalCode="+
+											var formData="name="+name+"&dob="+dob+"&gender="+gender+"&category="+category+"&aboutMe="+aboutMe
+											    +"&mobileNumber="+mobileNumber+"&country="+country+"&city="+city+"&postalCode="+
 												postalCode;
+
+                                            console.log(formData);
+
 											var xhttp = new XMLHttpRequest();
 					                        xhttp.open("POST", "http://localhost/AppointmentApp/backend/profile-settings-updateData.php",true);
 					                        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -323,22 +355,16 @@
                                             };		
 					                        xhttp.send(formData);
 										}
-										function redirect()
-										{
-											window.location.href="http://localhost/AppointmentApp/profile-settings-front.php";
-										}
-									</script>
-									
+										
+									</script>									
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
 			</div>		
-			<!-- /Page Content -->
-   
-			<!-- Footer -->
+							
+                        <!-- Footer -->
 			<footer class="footer">
 				
 				<!-- Footer Top -->
@@ -439,7 +465,9 @@
 				
 			</footer>
 			<!-- /Footer -->
-			<script>
+		   
+        </div>
+        <script>
                  function showData()
 				 {
 					var xhttp = new XMLHttpRequest();
@@ -450,6 +478,27 @@
 									var myObj = JSON.parse(this.responseText);
 									document.getElementsByName('email')[0].value=myObj.email;
 									document.getElementsByName('name')[0].value=myObj.name;
+                                    if(myObj.category=="1")
+                                    {
+                                        document.getElementsByClassName('myText')[0].innerHTML="Medical";
+                                    }
+                                    else if(myObj.category=="2")
+                                    {
+                                        document.getElementsByClassName('myText')[0].innerHTML="Computer Sciences";
+                                    }
+                                    else if(myObj.category=="3")
+                                    {
+                                        document.getElementsByClassName('myText')[0].innerHTML="Marketing";
+                                    }
+                                    else if(myObj.Category=="4")
+                                    {
+                                        document.getElementsByClassName('myText')[0].innerHTML="Management";
+                                    }
+                                    else if(myObj.category=="5")
+                                    {
+                                        document.getElementsByClassName('myText')[0].innerHTML="Lawyer";
+                                    }
+                                    document.getElementsByName('aboutMe')[0].value=myObj.aboutMe;
 									document.getElementsByName('gender')[0].value=myObj.gender;
 									document.getElementsByName('dob')[0].value=myObj.dob;
 									document.getElementsByName('mobileNumber')[0].value=myObj.mobileNumber;
@@ -460,55 +509,13 @@
                         };		
 					xhttp.send();
 				 }
-				 function showData2()
-					{
-						var xhttp = new XMLHttpRequest();
-					    xhttp.open("GET", "http://localhost/AppointmentApp/backend/customer-general-getData.php",false);
-					    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-				     	xhttp.onreadystatechange = function() {
-						if (this.readyState == 4 && this.status == 200) {
-									var myObj = JSON.parse(this.responseText);
-									if(myObj.name.length==0)
-									{
-										document.getElementById("name").innerHTML="Customer";
-									}
-									else
-									{
-										document.getElementById("name").innerHTML=myObj.name;
-									}
-									if(myObj.dob=="0000-00-00")
-									{
-										document.getElementById("dob").style.display='none';
-									}
-									else
-									{
-										document.getElementById("dob").innerHTML=myObj.dob;
-									}
-									if(myObj.city.length==0 || myObj.country.length==0)
-									{
-										document.getElementById("location").style.display='none';
-									
-									}
-									else
-									{
-										document.getElementById("location").innerHTML=myObj.city+","+myObj.country;
-									}
-									
-									
-							}
-                        };		
-					xhttp.send();
-					}
-                  
 			</script>
 			<script>		       
 					$(document).ready(function(){
 						    showData();
-                            showData2();
 					});
 		     </script>
 		   
-		</div>
 		<!-- /Main Wrapper -->
 	  
 		<!-- jQuery -->
@@ -518,20 +525,10 @@
 		<script src="assets/js/popper.min.js"></script>
 		<script src="assets/js/bootstrap.min.js"></script>
 		
-		<!-- Select2 JS -->
-		<script src="assets/plugins/select2/js/select2.min.js"></script>
-		
-		<!-- Datetimepicker JS -->
-		<script src="assets/js/moment.min.js"></script>
-		<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
-		
 		<!-- Sticky Sidebar JS -->
         <script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
         <script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
-		
-		<!-- Custom JS -->
-		<script src="assets/js/script.js"></script>
+	
 		
 	</body>
-
 </html>

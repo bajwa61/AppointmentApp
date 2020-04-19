@@ -36,12 +36,6 @@
 		<!-- Main Wrapper -->
 		<div class="main-wrapper">
 		
-			  <?php
-				  echo "User Type Id : ",$_SESSION["UserTypeId"];
-				  echo " Customer Id : ",$_SESSION["Id"];
-			  ?>
-
-
 			<!-- Header -->
 			<header class="header">
 				<nav class="navbar navbar-expand-lg header-nav">
@@ -53,13 +47,13 @@
 								<span></span>
 							</span>
 						</a>
-						<a href="index.html" class="navbar-brand logo">
+						<a href="http://localhost/AppointmentApp/index.php" class="navbar-brand logo">
 							<span style="font-size:1.6rem;color: #09dca4;">GAP BOOK</span>
 						</a>
 					</div>
 					<div class="main-menu-wrapper">
 						<div class="menu-header">
-							<a href="index.html" class="menu-logo">
+							<a href="http://localhost/AppointmentApp/index.php" class="menu-logo">
 								<span style="font-size:1.6rem;color: #09dca4;">GAP BOOK</span>
 							</a>
 							<a id="menu_close" class="menu-close" href="javascript:void(0);">
@@ -68,27 +62,24 @@
 						</div>
 						<ul class="main-nav">
 							<li>
-								<a href="index.html">Home</a>
+								<a href="http://localhost/AppointmentApp/index.php">Home</a>
 							</li>
 							<li class="has-submenu active">
-								<a href="search.html">Search for a Service</a>
+								<a href="#">Search for a Service</a>
 								<li class="has-submenu active">
 									<a href="#">Customers<i class="fas fa-chevron-down"></i></a>
 									<ul class="submenu">
-										<li><a href="booking.html">Booking</a></li>
-										<li><a href="checkout.html">Checkout</a></li>
-										<li><a href="booking-success.html">Booking Success</a></li>
-										<li><a href="customer-dashboard.php">My Dashboard</a></li>
+										<li><a href="#">Booking</a></li>
+										<li><a href="#">Checkout</a></li>
+										<li><a href="#">Booking Success</a></li>
+										<li><a href="http://localhost/AppointmentApp/service-dashboard.php">My Dashboard</a></li>
 										<li>
-											<a href="profile-settings-front.php">Profile Settings</a>
+											<a href="http://localhost/AppointmentApp/profile-settings-front.php">Profile Settings</a>
 										</li>
-										<li><a href="change-password.html">Change Password</a></li>
+										<li><a href="http://localhost/AppointmentApp/change-password.html">Change Password</a></li>
 									</ul>
 								</li>	
 							</li>	
-							<li class="login-link">
-								<a href="login-front.php">Login / Signup</a>
-							</li>
 						</ul>	 
 					</div>		 
 					<ul class="nav header-navbar-rht">
@@ -118,9 +109,9 @@
 										<h6 id="name"></h6>
 									</div>
 								</div>
-								<a class="dropdown-item" href="customer-dashboard.php">Dashboard</a>
-								<a class="dropdown-item" href="profile-settings-front.php">Profile Settings</a>
-								<a class="dropdown-item" href="index.html">Logout</a>
+								<a class="dropdown-item" href="http://localhost/AppointmentApp/customer-dashboard.php">Dashboard</a>
+								<a class="dropdown-item" href="http://localhost/AppointmentApp/profile-settings-front.php">Profile Settings</a>
+								<a class="dropdown-item" href="http://localhost/AppointmentApp/logout.php">Logout</a>
 							</div>
 						</li>
 						<!-- /User Menu -->
@@ -137,7 +128,7 @@
 						<div class="col-md-12 col-12">
 							<nav aria-label="breadcrumb" class="page-breadcrumb">
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="indexhtml">Home</a></li>
+									<li class="breadcrumb-item"><a href="http://localhost/AppointmentApp/index.php">Home</a></li>
 									<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
 								</ol>
 							</nav>
@@ -162,7 +153,7 @@
 										<a href="#" class="booking-doc-img">
 											<img src="assets/img/patients/patient.jpg" alt="User Image">
 										</a>
-										<div class="profile-det-info">
+										<div class="profile-det-info" style="position:relative;right:4vh;">
 											<h3 id="name"></h3>
 											<div class="patient-details">
 												<h5>
@@ -181,25 +172,25 @@
 									<nav class="dashboard-menu">
 										<ul>
 											<li class="active">
-												<a href="patient-dashboard.html">
+												<a href="http://localhost/AppointmentApp/customer.php">
 													<i class="fas fa-columns"></i>
 													<span>Dashboard</span>
 												</a>
 											</li>
 											<li>
-												<a href="profile-settings-front.php">
+												<a href="http://localhost/AppointmentApp/profile-settings-front.php">
 													<i class="fas fa-user-cog"></i>
 													<span>Profile Settings</span>
 												</a>
 											</li>
 											<li>
-												<a href="change-password.html">
+												<a href="http://localhost/AppointmentApp/change-password.html">
 													<i class="fas fa-lock"></i>
 													<span>Change Password</span>
 												</a>
 											</li>
 											<li>
-												<a href="index.html">
+												<a href="http://localhost/AppointmentApp/logout.php">
 													<i class="fas fa-sign-out-alt"></i>
 													<span>Logout</span>
 												</a>

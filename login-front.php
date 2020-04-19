@@ -1,7 +1,5 @@
 <?php 
    session_start();
-   $_SESSION["UserTypeId"]=-1;
-   $_SESSION["Id"]=-1;
 ?>
 
 
@@ -26,6 +24,21 @@
 	</head>
 	<body class="account-page">
 
+	  <?php 
+         if( isset($_SESSION["UserTypeId"]) && isset($_SESSION["Id"])  )
+		 {
+			 if($_SESSION["UserTypeId"]=="1" && $_SESSION["Id"]>0)
+			 {
+				 echo  '<script>window.location.href="http://localhost/AppointmentApp/customer-dashboard.php"</script>';
+				 
+			 }
+			 else if($_SESSION["UserTypeId"]=="2" && $_SESSION["Id"]>0)
+			 {
+				 echo '<script>window.location.href="http://localhost/AppointmentApp/service-dashboard.php"</script>';
+			 }
+		 }
+	  ?>
+
 		<!-- Main Wrapper -->
 		<div class="main-wrapper">
 		
@@ -40,13 +53,13 @@
 								<span></span>
 							</span>
 						</a>
-						<a href="index.html" class="navbar-brand logo">
+						<a href="http://localhost/AppointmentApp/index.php" class="navbar-brand logo">
 							<span style="font-size:1.6rem;color: #09dca4;">GAP BOOK</span>
 						</a>
 					</div>
 					<div class="main-menu-wrapper">
 						<div class="menu-header">
-							<a href="index.html" class="menu-logo">
+							<a href="http://localhost/AppointmentApp/index.php" class="menu-logo">
 								<span style="font-size:1.6rem;color: #09dca4;">GAP BOOK</span>
 							</a>
 							<a id="menu_close" class="menu-close" href="javascript:void(0);">
@@ -55,7 +68,7 @@
 						</div>
 						<ul class="main-nav">
 							<li>
-								<a href="index.html">Home</a>
+								<a href="http://localhost/AppointmentApp/index.php">Home</a>
 							</li>
 						</ul>
 					</div>		 
@@ -68,9 +81,6 @@
 								<p class="contact-header">Contact</p>
 								<p class="contact-info-header"> +92 310 525 9270</p>
 							</div>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link header-login" href="login-front.php">login / Signup </a>
 						</li>
 					</ul>
 				</nav>
@@ -110,21 +120,12 @@
 												</select>
 												<label class="focus-label">Choose Account Type</label>
 											</div>
-											<div class="text-right">
-												<a class="forgot-link" href="forgot-password.html">Forgot Password ?</a>
-											</div>
 											<button class="btn btn-primary btn-block btn-lg login-btn" onclick="checkmate()" type="submit">Login</button>
 										
 							
-											<div class="text-center dont-have">Don’t have an account? <a href="register.html">Register</a></div>
+											<div class="text-center dont-have">Don’t have an account? <a href="http://localhost/AppointmentApp/register-front.php">Register</a></div>
 										</form>
-										<?php
-											// remove all session variables
-											session_unset();
-
-											// destroy the session
-											session_destroy();
-                                        ?>
+									
 
 										<script>
 											function checkmate()
@@ -137,7 +138,7 @@
 
 												
 												var xhttp = new XMLHttpRequest();
-												xhttp.open("POST", "http://localhost/se_project/login.php",true);
+												xhttp.open("POST", "http://localhost/AppointmentApp/backend/login.php",true);
 												xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 												xhttp.onreadystatechange = function() {
 														if (this.readyState == 4 && this.status == 200) {
@@ -151,13 +152,12 @@
 															    //UserTypeId and Id
 															    if(myObj.UserTypeId==1 && myObj.Id>0 )
 															    {
-															    	redirect("http://localhost/se_project/customer-dashboard.php");
-																    console.log("Customer");
+															    	redirect("http://localhost/AppointmentApp/customer-dashboard.php");
+		
 															     }
 															     if(myObj.UserTypeId==2 && myObj.Id>0 )
 															    {
-																   redirect("http://localhost/se_project/doctor-dashboard.html");
-																   console.log("Service Provider");
+																   redirect("http://localhost/AppointmentApp/service-dashboard.php");										   
 															    }
 														 }
                                                     }};		

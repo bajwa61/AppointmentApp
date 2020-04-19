@@ -1,5 +1,13 @@
+<?php
+   session_start();
+   $_SESSION["UserTypeId"]=-1;
+   $_SESSION["Id"]=-1;
+?>
+
+
 <!DOCTYPE html> 
 <html lang="en">
+	
 <head>
 		<meta charset="utf-8">
 		<title>Gap Book</title>
@@ -13,11 +21,9 @@
 			src="https://code.jquery.com/jquery-3.4.1.min.js"
 			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 			crossorigin="anonymous">
-			
 	    </script>
 	</head>
 	<body class="account-page">
-
 		<!-- Main Wrapper -->
 		<div class="main-wrapper">
 		
@@ -32,13 +38,13 @@
 								<span></span>
 							</span>
 						</a>
-						<a href="index.html" class="navbar-brand logo">
+						<a href="http://localhost/AppointmentApp/index.php" class="navbar-brand logo">
 							<span style="font-size:1.6rem;color: #09dca4;">GAP BOOK</span>
 						</a>
 					</div>
 					<div class="main-menu-wrapper">
 						<div class="menu-header">
-							<a href="index.html" class="menu-logo">
+							<a href="http://localhost/AppointmentApp/index.php" class="menu-logo">
 								<span style="font-size:1.6rem;color: #09dca4;">GAP BOOK</span>
 							</a>
 							<a id="menu_close" class="menu-close" href="javascript:void(0);">
@@ -47,10 +53,7 @@
 						</div>
 						<ul class="main-nav">
 							<li>
-								<a href="index.html">Home</a>
-							</li>
-							<li class="login-link">
-								<a href="login-front.php">Login / Signup</a>
+								<a href="http://localhost/AppointmentApp/index.php">Home</a>
 							</li>
 						</ul>
 					</div>		 
@@ -64,118 +67,19 @@
 								<p class="contact-info-header"> +92 310 525 9270</p>
 							</div>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link header-login" href="login-front.php">login / Signup </a>
-						</li>
+						'<li class="login-link">
+										<a href="http://localhost/AppointmentApp/login-front.php">Login / Signup</a>
+						</li>';
 					</ul>
 				</nav>
 			</header>
-			<!-- /Header -->
-			
-			<!-- Page Content -->
-			<div class="content">
-				<div class="container-fluid">
-					
-					<div class="row">
-						<div class="col-md-8 offset-md-2">
-								
-							<!-- Register Content -->
-							<div class="account-content">
-								<div class="row align-items-center justify-content-center">
-									<div class="col-md-7 col-lg-6 login-left">
-										<img src="assets/img/login-banner.png" class="img-fluid" alt="Doccure Register">	
-									</div>
-									<div class="col-md-12 col-lg-6 login-right">
-										<div class="login-header">
-											<h3>Register Now </h3>
-										</div>
-										
-										<!-- Register Form -->
-										<form method="POST" id="form">
-											<div class="form-group form-focus">
-												<input type="text" class="form-control floating name1" name="name1" required>
-												<label class="focus-label">Name</label>
-											</div>
-											<div class="form-group form-focus">
-												<input type="text" class="form-control floating email" name="email" required>
-												<label class="focus-label">Email</label>
-											</div>
-											<div class="form-group form-focus">
-												<input type="password" class="form-control floating password" name="password" required>
-												<label class="focus-label">Create Password</label>
-											</div>
-											<div class="form-group form-focus">
-												<select class="form-control floating account-type" name="account-type" required>
-													<option value="1">Customer</option>
-													<option value="2">Service Provider</option>
-												</select>
-												<label class="focus-label">Choose Account Type</label>
-											</div>
-											<div class="text-right">
-												<a class="forgot-link" href="login.html">Already have an account?</a>
-											</div>
-											<button class="btn btn-primary btn-block btn-lg login-btn" onclick="loadDoc()" type="submit">Signup</button>
-										</form>
-										<!-- /Register Form -->
-										<script>
-											function loadDoc() {
-													var name=document.querySelector(".name1").value;
-													var email= document.querySelector(".email").value;
-													var password = document.querySelector(".password").value;
-													var accountType= document.querySelector(".account-type").value;
-													if(name.length>0 && email.length>0 && password.length>0)
-													{
-														var formData="name="+name+"&email="+email+"&password="+password+"&accountType="+accountType;
-														var xhttp = new XMLHttpRequest();
-														xhttp.open("POST", "http://localhost/se_project/register.php",false);
-														xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            <!-- /Header -->
+	<hr style="border:1px solid black;">
+    <h1 style="text-align:center;margin-top:7vh;margin-bottom:35vh;">Logout Sucessfull</h1>
 
-														xhttp.onreadystatechange = function() {
-															if (this.readyState == 4 && this.status == 200) {
-																console.log(this.responseText);
-																if(this.responseText=="1")
-																{
-																	alert("Registered Sucessfully");
-																    redirect("http://localhost/se_project/login-front.php");
-																}
-																else if(this.responseText=="-1")
-																{
-																	alert("Registration Failed");
-																}
-																
-															}
-															else {
-																
-															}
-														};
-														xhttp.send(formData);
-													}
-													else
-													{
-														alert("Inputs Should have length Greater Then 0");
-													}
-										}
-										function redirect(url)
-										{
-                                               window.location.href=url;
-										}
-										</script>
-										
-									</div>
-								</div>
-							</div>
-							<!-- /Register Content -->
-								
-						</div>
-					</div>
 
-				</div>
 
-			</div>		
-			<!-- /Page Content -->
-   
-			<!-- Footer -->
-			<footer class="footer">
+            <footer class="footer">
 				
 				<!-- Footer Top -->
 				<div class="footer-top">
@@ -213,7 +117,9 @@
 								</div>
 								<!-- /Footer Widget -->
 								
-							</div>
+                            </div>
+                            
+                    
 							
 							
 							
@@ -280,8 +186,7 @@
 		<!-- /Main Wrapper -->
 	  
 		<!-- jQuery -->
-	
-
+		
 		<!-- Bootstrap Core JS -->
 		<script src="assets/js/popper.min.js"></script>
 		<script src="assets/js/bootstrap.min.js"></script>
@@ -291,4 +196,5 @@
 		
 	</body>
 
+<!-- doccure/login.html  30 Nov 2019 04:12:20 GMT -->
 </html>
