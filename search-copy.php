@@ -1,6 +1,3 @@
-<?php  
-  session_start();
-?>
 <!DOCTYPE html> 
 <html lang="en">
 	
@@ -70,27 +67,26 @@
 									<h4 class="card-title mb-0">Search Filter</h4>
 								</div>
 								<div class="card-body">
-								  <form action="backend/search-update.php" method="POST">
-										<div class="filter-widget">
-											<h4>Select Specialist</h4> 
-											<?php include 'connection.php' ?>
-																<?php 
-																	$sql="SELECT * FROM serviceproviderscategory";
-																	$result=$conn->query($sql);
-																	while($row = $result->fetch_assoc())
-																{?>
-																<div>
-																	<input type="checkbox"  name="Search[]" value="<?php echo $row["CategoryId"] ; ?>">
-																	<label class="custom_check">  <?php echo $row["name"] ?></label>
-																</div>
-																<?php } $conn->close(); ?>									
-										</div>
-										<div class="btn-search">
-											<button type="submit" class="btn btn-block">Search</button>
-										</div>								   
-								</form>
-							   </div>
-						    </div>
+								<div class="filter-widget">
+                                    <h4>Select Specialist</h4>
+                                    
+                                    <?php include 'connection.php' ?>
+									                      <?php 
+									                         $sql="SELECT * FROM serviceproviderscategory";
+									                         $result=$conn->query($sql);
+									                         while($row = $result->fetch_assoc())
+			 						                      {?>
+			    							               <div>
+															  <input type="checkbox"  name="Search[]" value="<?php echo $row["CategoryId"] ; ?>">
+															  <label class="custom_check">  <?php echo $row["name"] ?></label>
+														  </div>
+														   <?php } $conn->close(); ?>									
+								</div>
+									<div class="btn-search">
+										<button type="button" class="btn btn-block">Search</button>
+									</div>	
+								</div>
+							</div>
 							<!-- /Search Filter -->
 							
 						</div>
@@ -108,66 +104,9 @@
 					           if ($result->num_rows > 0) {
 						            while($row = $result->fetch_assoc()) 
 						                {
-											if(isset( $_SESSION["ids"])){
-												$CategoryId=$row["CategoryId"]; 
-												for($i=0;$i<count($_SESSION["ids"]);$i++){
-													if($CategoryId==$_SESSION["ids"][$i]){ ?>
-														<!-- Doctor Widget -->
-														<form action="booking.php" enctype="multipart/form-data" >
-																<input type="hidden" value="<?php echo $row["ServiceProviderId"]; ?>" name="ServiceProviderId" >
-														<div class="card">
-															<div class="card-body">
-																<div class="doctor-widget">
-																	<div class="doc-info-left">
-																		<div class="doctor-img">
-																			<a href="doctor-profile.html">
-																				 <img src="assets/img/specialities/specialities-03.png" class="img-fluid" alt="User Image">
-																			</a>
-																		</div>
-																		<div class="doc-info-cont">
-																		
-																				<h4 class="doc-name"><?php echo $row["name"] ?></h4>
-																				<?php
-																					$CategoryId=$row["CategoryId"]; 
-																					$sql2="Select name from serviceproviderscategory where CategoryId=$CategoryId";
-																					$result2=$conn->query($sql2);
-																					if($result2->num_rows>0)
-																						{
-																							$row2 = $result2->fetch_assoc();
-																				?>
-																					<h4 class="doc-name">
-																						<?php echo $row2["name"] ?>
-																					</h4>
-																				<?php } ?>
-																					<p class="doc-speciality"><?php echo $row["aboutMe"] ;?></p>
-																		</div>
-																	</div>
-																	<div class="doc-info-right">
-																				<div class="clini-infos">
-																					<ul>
-																					<li class="font-weight-bold">
-																						<i class="fas fa-map-marker-alt"></i>
-																						<?php  echo $row["city"] ; echo ',' ; echo $row["country"] ; echo'</li>'; ?>
-																					</ul>
-																				</div>
-																		<div class="clinic-booking">
-																				  <button type="submit"
-																						class="mt-50 btn btn-primary" >
-																							Book Appointment
-																				  </button>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-														</form>
-														<!-- /Doctor Widget -->
-												<?php } else{}
-												}
-											}else{
-												?>
-												     <!-- Doctor Widget -->
-													 <form action="booking.php" enctype="multipart/form-data" method="POST" >
+					  ?>
+                            <!-- Doctor Widget -->
+                            <form action="booking.php" enctype="multipart/form-data" >
 						            <input type="hidden" value="<?php echo $row["ServiceProviderId"]; ?>" name="ServiceProviderId" >
 							<div class="card">
 								<div class="card-body">
@@ -181,6 +120,7 @@
 											<div class="doc-info-cont">
 											
 													<h4 class="doc-name"><?php echo $row["name"] ?></h4>
+													
 													<?php
 														$CategoryId=$row["CategoryId"]; 
 														$sql2="Select name from serviceproviderscategory where CategoryId=$CategoryId";
@@ -216,10 +156,6 @@
                             </div>
                             </form>
                             <!-- /Doctor Widget -->
-											<?php } 
-								
-					  ?>
-                            
                           
                             <?php } ?>
                             <?php } else {

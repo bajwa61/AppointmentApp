@@ -131,136 +131,51 @@
 					</ul>
 				</nav>
 			</header>
-		
-			<section class="section section-search">
-				<div class="container-fluid">
-					<div class="banner-wrapper">
-						<div class="banner-header text-center">
-							<h1>Search Service, Make an Appointment</h1>
-							<p>Discover the Best Service Provider.</p>
-						</div>
-						<div class="search-box" style="text-align: center;">
-							
-						<button type="submit" class="btn-lg" onclick="redirect()" style="padding-right:10vh;padding-left:10vh;background-color: #09e5ab;border: 1px solid #09e5ab;">
-									<h1 style="color:white;">
-										Book Appointment Now
-									</h1>
-								</button>
-							
-						</div>
-					</div>
-				</div>
-			</section>
-			
 
-			<section class="section section-specialities">
-				<div class="container-fluid">
-					<div class="section-header text-center">
-						<h2>Services Offered</h2>
-						<p class="sub-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					</div>
-					<div class="row justify-content-center">
-						<div class="col-md-9">
-							<!-- Slider -->
-							<div class="specialities-slider slider">
-							
-								<!-- Slider Item -->
-								<div class="speicality-item text-center">
-									<div class="speicality-img">
-										<img src="assets/img/specialities/specialities-01.png" class="img-fluid" alt="Speciality">
-										<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-									</div>
-									<p>Doctor</p>
-								</div>	
-								<!-- /Slider Item -->
-								
-								<!-- Slider Item -->
-								<div class="speicality-item text-center">
-									<div class="speicality-img">
-										<img src="assets/img/specialities/specialities-02.png" class="img-fluid" alt="Speciality">
-										<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-									</div>
-									<p>Lawyer</p>	
-								</div>							
-								<!-- /Slider Item -->
-
-								<div class="speicality-item text-center">
-									<div class="speicality-img">
-										<img src="assets/img/specialities/specialities-05.png" class="img-fluid" alt="Speciality">
-										<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-									</div>	
-									<p>Property Dealer</p>
-								</div>
-								
-								<!-- Slider Item -->
-								<div class="speicality-item text-center">
-									<div class="speicality-img">
-										<img src="assets/img/specialities/specialities-03.png" class="img-fluid" alt="Speciality">
-										<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-									</div>	
-									<p>Social Media Manager</p>	
-								</div>							
-								<!-- /Slider Item -->
-								
-								<!-- Slider Item -->
-								<div class="speicality-item text-center">
-									<div class="speicality-img">
-										<img src="assets/img/specialities/specialities-04.png" class="img-fluid" alt="Speciality">
-										<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-									</div>	
-									<p>Business Consultant</p>	
-								</div>							
-								<!-- /Slider Item -->
-								
-								
-							</div>
-							<!-- /Slider -->
-							
+			<div style="text-align:center;" class="mt-4">
+				<h1>Feedback</h1>
+			</div>
+			<div style="padding-lefT:15vh;margin-bottom:10vh;">
+				<form method="post">
+						<div class="form-group">
+							<label for="exampleFormControlInput1">Email address</label>
+							<input type="email" class="form-control" id="exampleFormControlInput1 " name="email" placeholder="name@example.com">
 						</div>
-					</div>
-				</div>   
-			</section>	 
-			<!-- Clinic and Specialities -->
-		  
-			<!-- Popular Section -->
-			<section class="section section-doctor">
-				<div class="container-fluid">
-				   <div class="row">
-						<div class="col-lg-12" style="text-align: center">
-							<div class="section-header ">
-								<h2>Book Our Service Provider</h2>
-								<p>Lorem Ipsum is simply dummy text </p>
-							</div>
-							<div class="about-content">
-								<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.</p>
-								<p>web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes</p>					
-								<br>
-								<button type="submit" class="btn" onclick="feed()"  style="padding-right:7vh;padding-left:7vh;background-color: #09e5ab;border: 1px solid #09e5ab;">
-									<h1 style="color:white;">
-										Give Feedback
-									</h1>
-								</button>
-								<script>
-									function redirect()
-									{
-										window.location.href="http://localhost/AppointmentApp/search.php";
-									}
-									function feed()
-									{
-										window.location.href="http://localhost/AppointmentApp/feedback.php";
-									}
-
-
-								</script>
-							</div>
+						<div class="form-group">
+							<label for="exampleFormControlSelect1">Enter Name</label>
+							<input type="text" class="form-control" id="exampleFormControlInput2" name="name" placeholder="Enter Name">
 						</div>
-								
-							</div>
+						<div class="form-group">
+							<label for="exampleFormControlTextarea1">Enter Feedback Here</label>
+							<textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="text1"></textarea>
 						</div>
-				   </div>
-				</div>
-			</section>
-			<!-- /Popular Section -->
+						<button class="btn-lg btn-primary" onclick="submitFeedback()">Submit Now</button>
+				</form>
+			</div>
+			<script>
+				function submitFeedback()
+				{
+					var email=document.getElementsByName("email")[0].value;
+					var name=document.getElementsByName("name")[0].value;
+					var text1=document.getElementsByName("text1")[0].value;
+					if(email.length>5 && name.length>0 && text1.length>0){
+						alert("Feedback Send");
+					}else{
+						alert("Invalid Inputs");
+					}
+					/*var formData="name="+name+"&email="+email+"&text1="+text1;					    
+					/*var xhttp = new XMLHttpRequest();
+					xhttp.open("POST", "http://localhost/AppointmentApp/backend/sendEmail.php",true);
+					xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+									   alert(this.responseText);
+							        }
+                                };		
+					        xhttp.send(formData);*/
+				}
+			</script>
+		 
 		   	
 			<!-- Footer -->
 			<footer class="footer">

@@ -76,7 +76,7 @@
 							
 							<div class="row">
 								<div class="col-md-12">
-									<h4 class="mb-4">Slots</h4>
+									<h4 class="mb-4">Appointments</h4>
 									<div class="appointment-tab">
 									
 										
@@ -90,15 +90,48 @@
 															<table class="table table-hover table-center mb-0">
 																<thead>
 																	<tr>
-																		<th>Slot Id</th>
-																		<th>Slote Duration</th>
-																		<th>Slote Data</th>
-																		<th>Slote Time</th>
+																		<th>Customer Name</th>
+																		<th>Customer Phone</th>
+																		<th>Appointment Date</th>
+																		<th>Appointment Time</th>
 																	</tr>
 																</thead>
-																<tbody id="demo">
-					                                                   
-																</tbody>
+																<tbody>
+                        <?php 
+                              include 'connection.php';
+                              $id=$_SESSION["Id"];
+                              $sql="Select SlotId from slots where ServiceProviderId='$id' ";
+                              $result = $conn->query($sql);
+							  if ($result->num_rows > 0) {
+								    while($row = $result->fetch_assoc()){ 	    
+                                        $slotID=$row["SlotId"];
+										$sql2="SELECT * FROM slots INNER JOIN bookings where bookings.SlotId='$slotID'";
+												$result2 = $conn->query($sql2);
+													if ($result2->num_rows > 0) {
+															while($row2 = $result2->fetch_assoc()){                           
+                                                                            $custID=$row2["CustomerId"];
+																			$sql3="SELECT UserId from customers where CustomerId='$custID' LIMIT 1 ";
+                                                                            $result3 = $conn->query($sql3);
+                                                                            $row3 = $result3->fetch_assoc();
+                                                                            $userID=$row3["UserId"];
+                                                                            $sql4="Select * from users where UserId='$userID' LIMIT 1 ";
+                                                                            $result4 = $conn->query($sql4);
+                                                                            while($row4 = $result4->fetch_assoc()){ ?>
+                                                                                 <tr>
+                                                                                    <td><?php echo $row4["name"] ?></td>
+                                                                                    <td><?php echo $row4["mobileNumber"]; ?></td>
+                                                                                    <td><?php echo $row2["date"]  ; ?></td>
+                                                                                    <td><?php echo $row2["time"]  ; ?></td>
+                                                                                </tr>
+                                                                           <?php }                                                            
+                                                            }
+                                                        }
+                                    }
+                                } 
+                        ?>
+																
+																
+															</tbody>
 															</table>
 		
 														</div>
@@ -144,24 +177,5 @@
 		
 		<!-- Custom JS -->
 		<script src="assets/js/script.js"></script>
-		<script>
-			 function showData()
-				 {
-					var xhttp = new XMLHttpRequest();
-					xhttp.open("GET", "http://localhost/AppointmentApp/backend/show-slots.php",false);
-					xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					xhttp.onreadystatechange = function() {
-							if (this.readyState == 4 && this.status == 200) {
-								console.log(this.responseText);
-								document.getElementById("demo").innerHTML=this.responseText;
-							}
-                        };		
-					xhttp.send();
-				 }
-				 $(document).ready(function(){
-                            showData();
-					});
-
-		</script>
 	</body>
 </html>

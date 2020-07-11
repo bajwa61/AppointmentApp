@@ -4,21 +4,9 @@
 
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "demo";
+include '../connection.php';
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$Id=$_SESSION["Id"];//Customer or Service Provider Id
-$Userid;
+$UserId=$_POST["UserId"];
 $name=$_POST['name'];
 $rawdate = htmlentities($_POST['dob']);
 $dob = date('Y-m-d', strtotime($rawdate));
@@ -28,43 +16,43 @@ $country=$_POST['country'];
 $city=$_POST['city'];
 $postalCode=$_POST['postalCode'];
 
-
 if($_SESSION["UserTypeId"]=="1")
 {
-    $sql="SELECT UserId from customers where CustomerId='$Id'";
-    $result=$conn->query($sql);
-    $row = $result->fetch_assoc();
-    $UserId=$row["UserId"];
-}
-else if ($_SESSION["UserTypeId"]=="2")
-{
-
-    $category=$_POST['category'];
-    $aboutMe=$_POST['aboutMe'];
-    $sql="UPDATE serviceproviders SET CategoryId='$category',aboutMe='$aboutMe' where ServiceProviderId='$Id'";
-    $result=$conn->query($sql);
-
-    if ($result === TRUE) {
-        $sql="SELECT UserId from serviceproviders where ServiceProviderId='$Id'";
-        $result=$conn->query($sql);
-        $row = $result->fetch_assoc();
-        $UserId=$row["UserId"];
-    } 
-    else
-    {
-        echo '-1';
+    $sql = "UPDATE users SET name='$name',gender='$gender',mobileNumber='$mobileNumber',country='$country',city='$city',postalCode='$postalCode' WHERE UserId='$UserId' ";
+    echo $sql;
+    $result = $conn->query($sql);
+    if($result){
+         header('location:http://localhost/AppointmentApp/profile-settings-front.php');
+    }else{
+        echo "<script type='text/javascript'>alert('Update Failed');</script>";
+        header('location:http://localhost/AppointmentApp/profile-settings-front.php');
     }
 }
 
-$sql = "UPDATE users SET name='$name',dob='$dob',gender='$gender',mobileNumber='$mobileNumber',country='$country',city='$city',postalCode='$postalCode' WHERE UserId='$UserId' ";
-$result = $conn->query($sql);
-
-if ($result === TRUE) {
-    echo '1';
-} 
-else
+if ($_SESSION["UserTypeId"]=="2")
 {
-    echo '-1';
+    $category=$_POST['category'];
+    $aboutMe=$_POST['aboutMe'];
+    $ServiceId=$_POST["ServiceId"];
+    $sql3="UPDATE serviceproviders SET CategoryId='$category',aboutMe='$aboutMe' where ServiceProviderId='$ServiceId'";
+    $result3=$conn->query($sql3);
+
+    if ($result3 === TRUE) {
+        $sql4 = "UPDATE users SET name='$name',gender='$gender',mobileNumber='$mobileNumber',country='$country',city='$city',postalCode='$postalCode' WHERE UserId='$UserId' ";
+        echo $sql4;
+        $result4 = $conn->query($sql4);
+        if($result4){
+             header('location:http://localhost/AppointmentApp/profile-settings-front-2.php');
+        }else{
+            echo "<script type='text/javascript'>alert('Update Failed');</script>";
+            header('location:http://localhost/AppointmentApp/profile-settings-front-2.php');
+        }
+    } 
+    else
+    {
+        echo "<script type='text/javascript'>alert('Update Failed');</script>";
+        header('location:http://localhost/AppointmentApp/profile-settings-front-2.php');
+    }
 }
 
 
